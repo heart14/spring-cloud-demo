@@ -1,2 +1,16 @@
 server:
   port: 80
+
+spring:
+  application:
+    name: cloud-order-service  #向EurekaServer注册服务时会取该属性作为服务中心里的服务名 很重要
+
+eureka:
+  client:
+    register-with-eureka: true  #是否将自己注册进EurekaServer 默认为true
+    fetch-registry: true  #是否从EurekaServer
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  instance:
+    instance-id: order80
+    prefer-ip-address: true
