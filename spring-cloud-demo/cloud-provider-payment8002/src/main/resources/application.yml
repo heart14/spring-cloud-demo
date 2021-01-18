@@ -33,6 +33,6 @@ eureka:
     fetch-registry: true  #是否从EurekaServer
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka #注册到多台Eureka服务端实例，用逗号隔开
-#  instance:
-#    instance-id: payment8001
-#    prefer-ip-address: true
+  instance:
+    instance-id: payment8002
+    prefer-ip-address: true
