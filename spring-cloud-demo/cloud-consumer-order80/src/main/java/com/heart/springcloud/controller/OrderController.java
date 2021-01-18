@@ -21,7 +21,11 @@ import javax.annotation.Resource;
 @Slf4j
 public class OrderController {
 
-    public static final String PAYMENT_PROVIDER_URL = "http://localhost:8001";
+    //之前没有通过Eureka注册中心调用微服务时，需要指定所调用的服务ip:port
+    //public static final String PAYMENT_PROVIDER_URL = "http://localhost:8001";
+
+    //通过Eureka注册中心调用微服务时，不关注具体IP，只需要知道我要调用的微服务名称即可
+    public static final String PAYMENT_PROVIDER_URL = "http://CLOUD-PAYMENT-SERVICE";
 
     @Resource
     private RestTemplate restTemplate;
