@@ -1,0 +1,10 @@
+server:
+  port: 8004
+
+#Zookeeper配置
+spring:
+  application:
+    name: cloud-payment-service
+  cloud:
+    zookeeper:
+      connect-string: heartzz.com:2181
