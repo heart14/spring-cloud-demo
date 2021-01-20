@@ -24,7 +24,7 @@ public class PaymentController {
 
     @RequestMapping(value = "/payment/zk")
     public CommonResult paymentZk() {
-        return new CommonResult(200, "ZOOKEEPER service port [" + serverPort + "] SUCCESS! " + UUID.randomUUID().toString());
+        return new CommonResult(200, "ZOOKEEPER server port [" + serverPort + "] SUCCESS! ", UUID.randomUUID().toString().toUpperCase());
     }
 
 }
