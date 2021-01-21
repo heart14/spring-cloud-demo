@@ -1,0 +1,10 @@
+server:
+  port: 80
+
+#zookeeper客户端配置
+spring:
+  application:
+    name: cloud-order-service
+  cloud:
+    zookeeper:
+      connect-string: heartzz.com:2181
