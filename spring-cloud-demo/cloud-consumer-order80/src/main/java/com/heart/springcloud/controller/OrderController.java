@@ -3,6 +3,7 @@ package com.heart.springcloud.controller;
 import com.heart.springcloud.entities.CommonResult;
 import com.heart.springcloud.entities.Payment;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,4 +44,10 @@ public class OrderController {
     }
 
 
+    @GetMapping(value = "/consumer/payment/get/entity/{id}")
+    public CommonResult getPaymentEntityById(@PathVariable Long id) {
+        ResponseEntity<CommonResult> responseEntity = restTemplate.getForEntity(PAYMENT_PROVIDER_URL + "/payment/get/" + id, CommonResult.class);
+        log.info("RestTemplate.getForEntity()方法的返回值 :{}", responseEntity);
+        return responseEntity.getBody();
+    }
 }
