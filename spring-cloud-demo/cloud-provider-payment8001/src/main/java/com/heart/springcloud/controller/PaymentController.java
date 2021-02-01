@@ -66,7 +66,7 @@ public class PaymentController {
             for (String service : services) {
                 List<ServiceInstance> instances = discoveryClient.getInstances(service);
                 for (ServiceInstance instance : instances) {
-                    log.info("[{}]服务的实例信息 :Host :{}, Port :{}, Uri :{}, InstanceId :{}, ServiceId :{}, Scheme :{}, Metadata :{}", service, instance.getHost(),instance.getPort(),instance.getUri(),instance.getInstanceId(),instance.getServiceId(),instance.getScheme(),instance.getMetadata());
+                    log.info("[{}]服务的实例信息 :Host :{}, Port :{}, Uri :{}, InstanceId :{}, ServiceId :{}, Scheme :{}, Metadata :{}", service, instance.getHost(), instance.getPort(), instance.getUri(), instance.getInstanceId(), instance.getServiceId(), instance.getScheme(), instance.getMetadata());
                 }
             }
         }
@@ -74,4 +74,12 @@ public class PaymentController {
         return new CommonResult(200, "Server Port[" + serverPort + "] service discovery", discoveryClient);
     }
 
+
+    /**
+     * 手写一个负载均衡算法之 被调用接口
+     */
+    @GetMapping(value = "/payment/lb")
+    public CommonResult paymentLb() {
+        return new CommonResult(200, "[Custom LoadBalance Algorithm] Provided by server port " + serverPort);
+    }
 }

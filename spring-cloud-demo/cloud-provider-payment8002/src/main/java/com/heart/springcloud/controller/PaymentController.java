@@ -50,4 +50,12 @@ public class PaymentController {
         }
     }
 
+
+    /**
+     * 手写一个负载均衡算法之 被调用接口
+     */
+    @GetMapping(value = "/payment/lb")
+    public CommonResult paymentLb() {
+        return new CommonResult(200, "[Custom LoadBalance Algorithm] Provided by server port " + serverPort);
+    }
 }
