@@ -19,8 +19,8 @@ spring:
 #Eureka集群版版配置
 eureka:
   client:
-    register-with-eureka: true  #是否将自己注册进EurekaServer 默认为true
-    fetch-registry: true  #是否从EurekaServer
+    register-with-eureka: false  #是否将自己注册进EurekaServer 默认为true
+    fetch-registry: false  #是否从EurekaServer
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka #注册到多台Eureka服务端实例，用逗号隔开
 #  instance:
