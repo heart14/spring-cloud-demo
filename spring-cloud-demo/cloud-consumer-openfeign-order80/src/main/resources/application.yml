@@ -33,3 +33,10 @@ ribbon:
   ReadTimeout: 5000
   ConnectionTimeout: 5000
 #加上这个配置后，再访问测试接口/consumer/payment/feign/timeout，就不会报错了
+
+#OpenFeign日志打印级别配置
+logging:
+  level:
+    #feign日志以什么级别监控那个接口
+    com.heart.springcloud.service.FeignPaymentService: debug
+
