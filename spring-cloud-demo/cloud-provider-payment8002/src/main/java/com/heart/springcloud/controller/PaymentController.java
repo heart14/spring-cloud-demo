@@ -58,4 +58,27 @@ public class PaymentController {
     public CommonResult paymentLb() {
         return new CommonResult(200, "[Custom LoadBalance Algorithm] Provided by server port " + serverPort);
     }
+
+
+    /**
+     * 让程序等待3秒才返回响应，测试OpenFeign的超时控制，OpenFeign底层是Ribbon，所以超时控制也是由Ribbon来实现的，Ribbon默认超时时长为1s
+     *
+     * @return
+     */
+    @GetMapping(value = "/payment/feign/timeout")
+    public CommonResult paymentTimeout() {
+        long l1 = System.currentTimeMillis();
+        log.info("[OpenFeign] 服务调用超时测试，begin timestamp:{}", l1);
+        try {
+            for (int i = 1; i <= 3; i++) {
+                log.info("{} SECOND LATER......", i);
+                Thread.sleep(1000);
+            }
+        } catch (InterruptedException e) {
+            log.error("{}", e.getMessage());
+        }
+        long l2 = System.currentTimeMillis();
+        log.info("[OpenFeign] 服务调用超时测试，end timestamp:{}, 耗时 :{}s", l2, (l2 - l1) / 1000);
+        return new CommonResult(200, "Server port [8002] :程序耗时 3s");
+    }
 }

@@ -26,3 +26,10 @@ eureka:
 #  instance:
 #    instance-id: order80
 #    prefer-ip-address: true
+
+
+#OpenFeign超时控制配置，由Ribbon实现，单位毫秒
+ribbon:
+  ReadTimeout: 5000
+  ConnectionTimeout: 5000
+#加上这个配置后，再访问测试接口/consumer/payment/feign/timeout，就不会报错了

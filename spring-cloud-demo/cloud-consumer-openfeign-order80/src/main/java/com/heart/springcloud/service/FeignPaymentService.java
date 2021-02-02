@@ -30,4 +30,11 @@ public interface FeignPaymentService {
     @GetMapping(value = "/payment/get/{id}")
     CommonResult<Payment> getPaymentById(@PathVariable("id") Long id);
 
+
+    /**
+     * OpenFeign超时测试
+     * @return
+     */
+    @GetMapping(value = "/payment/feign/timeout")
+    CommonResult paymentTimeout();
 }

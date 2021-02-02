@@ -31,4 +31,14 @@ public class OrderOpenFeignController {
         log.info("[CONSUMER] 通过OPEN FEIGN调用PROVIDER <= result :{}", result);
         return result;
     }
+
+    /**
+     * OpenFeign超时测试
+     * @return
+     */
+    @GetMapping(value = "/consumer/payment/feign/timeout")
+    public CommonResult paymentFeignTimeout() {
+        log.info("[OpenFeign] 服务调用超时测试");
+        return feignPaymentService.paymentTimeout();
+    }
 }
