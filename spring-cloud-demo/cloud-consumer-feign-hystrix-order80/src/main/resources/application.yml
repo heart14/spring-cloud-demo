@@ -16,3 +16,17 @@ eureka:
 feign:
   hystrix:
     enabled: true
+
+#ribbon超时设置
+ribbon:
+  ReadTimeout: 5000
+  ConnectionTimeout: 5000
+
+#Hystrix默认超时设置
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
