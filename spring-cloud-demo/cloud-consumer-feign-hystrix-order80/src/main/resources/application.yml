@@ -11,3 +11,8 @@ eureka:
     fetch-registry: true #是否从注册中心获取其它服务的地址
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka #注册到多台Eureka服务端实例，用逗号隔开
+
+#开启Feign对Hystrix的支持
+feign:
+  hystrix:
+    enabled: true
