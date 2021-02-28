@@ -1,6 +1,7 @@
 package com.heart.springcloud.service;
 
 import com.heart.springcloud.entities.CommonResult;
+import com.heart.springcloud.service.impl.FeignHystrixPaymentFallbackServiceImpl;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @Version: v1.0
  */
 @Component
-@FeignClient(value = "CLOUD-HYSTRIX-PAYMENT-SERVICE")
+@FeignClient(value = "CLOUD-HYSTRIX-PAYMENT-SERVICE",fallback = FeignHystrixPaymentFallbackServiceImpl.class)//通配fallback，在这个注解上指明fallback实现类
 public interface FeignHystrixPaymentService {
 
     @GetMapping(value = "/payment/hystrix/success/{id}")
