@@ -31,7 +31,7 @@ public class PaymentHystrixController {
     public CommonResult paymentInfo_success(@PathVariable("id") Integer id) {
         long l1 = System.currentTimeMillis();
         String success = hystrixPaymentService.paymentInfo_success(id);
-        log.info("[PROVIDER]{}",success);
+        log.info("[PROVIDER]{}", success);
         long l2 = System.currentTimeMillis();
         return new CommonResult(200, success + ", SERVER PORT :" + serverPort + ", 耗时 :" + (l2 - l1) + "毫秒");
     }
@@ -40,8 +40,16 @@ public class PaymentHystrixController {
     public CommonResult paymentInfo_timeout(@PathVariable("id") Integer id) {
         long l1 = System.currentTimeMillis();
         String timeout = hystrixPaymentService.paymentInfo_timeout(id);
-        log.info("[PROVIDER]{}",timeout);
+        log.info("[PROVIDER]{}", timeout);
         long l2 = System.currentTimeMillis();
         return new CommonResult(200, timeout + ", SERVER PORT :" + serverPort + ", 耗时 :" + (l2 - l1) + "毫秒");
+    }
+
+    /*    ↓↓↓↓  服务熔断  ↓↓↓↓*/
+    @GetMapping(value = "/payment/circuit/{id}")
+    public CommonResult paymentCircuitBreaker(@PathVariable("id") Integer id) {
+        String circuitBreaker = hystrixPaymentService.paymentCircuitBreaker(id);
+        log.info("[PROVIDER]{}", circuitBreaker);
+        return new CommonResult(200, circuitBreaker + ", SERVER PORT :" + serverPort);
     }
 }

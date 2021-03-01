@@ -25,4 +25,16 @@ public interface HystrixPaymentService {
      */
     String paymentInfo_timeout(Integer id);
 
+    /*      ↑↑↑↑  服务降级  ↑↑↑↑*/
+
+    /*      ↓↓↓↓  服务熔断  ↓↓↓↓*/
+
+    /**
+     * 测试接口，模拟服务出错到一定次数后开启熔断
+     *
+     * @param id
+     * @return
+     */
+    String paymentCircuitBreaker(Integer id);
+
 }

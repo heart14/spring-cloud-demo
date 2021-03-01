@@ -1,5 +1,6 @@
 package com.heart.springcloud.service.impl;
 
+import cn.hutool.core.util.IdUtil;
 import com.heart.springcloud.service.HystrixPaymentService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
@@ -61,6 +62,7 @@ public class HystrixPaymentServiceImpl implements HystrixPaymentService {
 
     /**
      * 服务降级fallback方法
+     *
      * @param id
      * @return
      */
@@ -81,6 +83,7 @@ public class HystrixPaymentServiceImpl implements HystrixPaymentService {
 
     /**
      * 模拟程序处理超时
+     *
      * @param id
      * @return
      */
@@ -93,8 +96,38 @@ public class HystrixPaymentServiceImpl implements HystrixPaymentService {
             //模拟程序处理耗时3秒才完成
             TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException e) {
-            log.error("{}",e.getMessage());
+            log.error("{}", e.getMessage());
         }
         return "SERVICE SUCCESS!(*^_^*) THREAD :" + Thread.currentThread().getName() + ", ID :" + id;
     }
+
+
+    /*      ↑↑↑↑  服务降级  ↑↑↑↑*/
+
+    /*      ↓↓↓↓  服务熔断  ↓↓↓↓*/
+
+    /*
+        commandProperties所有可选属性在抽象类HystrixCommandProperties里(line73)列出了明细，并进行了初始化默认值，
+        如果在注解中进行了配置，则取配置的值，如果没有，则取抽象类中的默认值
+     */
+
+    @Override
+    @HystrixCommand(fallbackMethod = "paymentCircuitBreaker_fallback", commandProperties = {
+            @HystrixProperty(name = "circuitBreaker.enabled", value = "true"),//是否启用断路器
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),//请求次数
+            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"),//时间窗口时长，单位毫秒，在这个时间内，10次请求里60%请求失败，则开启熔断
+            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60")//失败率达到多少后开启熔断
+    })
+    public String paymentCircuitBreaker(Integer id) {
+        if (id < 0) {
+            throw new RuntimeException("******** id不能为负数！********");
+        }
+        String serialNumber = IdUtil.simpleUUID();
+        return "SERVICE SUCCESS!(*^_^*) THREAD :" + Thread.currentThread().getName() + ", serialNumber :" + serialNumber;
+    }
+
+    public String paymentCircuitBreaker_fallback(Integer id) {
+        return "SERVICE FAIL!(T_T) THREAD :" + Thread.currentThread().getName() + ",paymentCircuitBreaker服务暂不可用，请稍后再试! ID :" + id;
+    }
+
 }
