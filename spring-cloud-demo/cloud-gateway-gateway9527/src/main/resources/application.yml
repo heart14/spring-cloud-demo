@@ -35,6 +35,9 @@ spring:
           predicates:
             - Path=/payment/lb #断言，路径相匹配的进行路由
             - After=2021-03-04T10:14:26.654+08:00[Asia/Shanghai] #断言，在指定日期之后的请求才能进行路由，否则都被拒绝访问
+          filters:
+            - AddRequestHeader=X-Request-id, forever #过滤器，在请求进行路由之前添加一对请求头key=value
+
 
 #Eureka集群版版配置
 eureka:
