@@ -1,58 +1,20 @@
+package com.heart.springcloud.filter;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.core.Ordered;
+import org.springframework.stereotype.Component;
+import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Mono;
 
-
-
-#### Gateway Filter Factories
-
-是什么？
-
-是个过滤器
-
-
-
-生命周期
-
-pre
-
-post
-
-
-
-种类
-
-GatewayFilter  31种
-
-GlobalFilter  10种
-
-
-
-官网文档
-
-https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#gatewayfilter-factories
-
-
-
-#### 自定义过滤器
-
-自定义全局GlobalFilter
-
-
-
-两个主要接口：GlobalFilter,Ordered
-
-
-
-能干吗？
-
-全局日志记录  统一网关鉴权等
-
-
-
-实现
-
-新建一个自定义过滤器类，实现上面所说接口即可
-
-```java
+/**
+ * @ClassName: MyLogGatewayFilter
+ * @Description: TODO
+ * @Author: jayhe
+ * @Date: 2021/3/4 10:51
+ * @Version: v1.0
+ */
 @Component
 @Slf4j
 public class MyLogGatewayFilter implements GlobalFilter, Ordered {
@@ -95,5 +57,3 @@ public class MyLogGatewayFilter implements GlobalFilter, Ordered {
         return 0;
     }
 }
-```
-
