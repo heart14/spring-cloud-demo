@@ -1,0 +1,27 @@
+server:
+  port: 3344
+
+spring:
+  application:
+    name: cloud-config-center #注册进Eureka注册中心的服务名
+  cloud:
+    config:
+      server:
+        git:
+#          uri: git@github.com:heart14/springcloud-config.git
+          uri: https://github.com/heart14/springcloud-config.git
+          search-paths: #配置文件搜索目录
+            - springcloud-config
+      label: master #所要读取的分支
+
+
+#Eureka集群版版配置
+eureka:
+  instance:
+    instance-id: configcenter3344
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true  #是否将自己注册进EurekaServer 默认为true
+    fetch-registry: true  #是否从EurekaServer
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka #注册到多台Eureka服务端实例，用逗号隔开
