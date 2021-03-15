@@ -10,7 +10,7 @@ spring:
       label: master #从配置中心（服务端）拉取配置的分支名称
       name: application #从配置中心（服务端）拉取配置的配置文件名称
       profile: test #从配置中心（服务端）拉取配置的配置文件属性
-      uri: http://localhost:3344 #配置中心（服务端）地址
+      uri: http://config3344.com:3344 #配置中心（服务端）地址
       #上述配置效果，去配置中心获取 master分支下的application-test.yml文件
       #配置中心按规则去配置仓库获取配置文件
 
@@ -26,3 +26,9 @@ eureka:
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka #注册到多台Eureka服务端实例，用逗号隔开
 
+#暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
