@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @ClassName: ConfigClientController
  * @Description: TODO
  * @Author: jayhe
- * @Date: 2021/3/9 15:15
+ * @Date: 2021/3/25 15:16
  * @Version: v1.0
  */
 @RestController
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RefreshScope
 public class ConfigClientController {
 
-    @Value("${config.info}")//这里的config.info是根据配置文件中实际的key值来写的
+    @Value("${config.info}")
     private String configInfo;
 
     @Value("${server.port}")

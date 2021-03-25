@@ -22,8 +22,14 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-server</artifactId>
-
         </dependency>
+
+        <!--spring cloud bus 消息总线RabbitMQ支持-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+        </dependency>
+
         <!--eureka client-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

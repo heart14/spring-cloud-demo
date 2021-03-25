@@ -1,10 +1,10 @@
 server:
-  port: 3355
+  port: 3366
 
 spring:
   application:
     name: cloud-config-client
-#SpringCloud config配置
+  #SpringCloud config配置
   cloud:
     config:
       label: master #从配置中心（服务端）拉取配置的分支名称
@@ -20,10 +20,11 @@ spring:
     username: guest
     password: guest
 
+
 #Eureka集群版版配置
 eureka:
   instance:
-    instance-id: configclient3355
+    instance-id: configclient3366
     prefer-ip-address: true
   client:
     register-with-eureka: true  #是否将自己注册进EurekaServer 默认为true
