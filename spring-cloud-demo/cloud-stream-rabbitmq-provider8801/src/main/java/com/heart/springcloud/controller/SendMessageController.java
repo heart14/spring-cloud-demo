@@ -30,6 +30,6 @@ public class SendMessageController {
         Message message = MessageUtils.messageGenerator(s);
 
         String send = messageProvider.send(message);
-        return "MESSAGE [" + s + "] send " + send.toUpperCase();
+        return "MESSAGE [" + s + "] SEND " + send.toUpperCase();
     }
 }
