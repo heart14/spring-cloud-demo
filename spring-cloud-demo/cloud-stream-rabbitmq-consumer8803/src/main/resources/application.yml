@@ -1,5 +1,5 @@
 server:
-  port: 8802
+  port: 8803
 
 spring:
   application:
@@ -32,7 +32,7 @@ eureka:
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka #注册到多台Eureka服务端实例，用逗号隔开
   instance:
-    instance-id: receiver-8802.com #在信息列表时显示主机名称
+    instance-id: receiver-8803.com #在信息列表时显示主机名称
     prefer-ip-address: true #访问的路径变为IP地址
     lease-renewal-interval-in-seconds: 2 #设置心跳的时间间隔，默认为30秒
     lease-expiration-duration-in-seconds: 5 #设置超时的时间间隔，默认为90秒
