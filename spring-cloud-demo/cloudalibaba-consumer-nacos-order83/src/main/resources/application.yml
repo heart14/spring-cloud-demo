@@ -1,0 +1,23 @@
+server:
+  port: 83
+
+spring:
+  application:
+    name: cloud-order-service-nacos
+#Nacos作为服务注册中心的配置
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+#暴露监控的端点  消费者端不用配置这一项 为什么呢？
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+
+
+#微服务调用地址配置化，在这里配置后在代码里读取配置，就不用在代码里定义微服务地址常量了
+#如果由多个微服务调用地址，在service-url进行配置即可，然后在代码里通过@Value注解读取配置
+service-url:
+  nacos-payment-service: http://cloud-payment-service-nacos

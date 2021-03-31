@@ -5,17 +5,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
- * @ClassName: PaymentaMain9001
+ * @ClassName: OrderMain83
  * @Description: TODO
  * @Author: jayhe
- * @Date: 2021/3/31 14:11
+ * @Date: 2021/3/31 15:51
  * @Version: v1.0
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-public class PaymentaMain9001 {
+public class OrderMain83 {
 
     public static void main(String[] args) {
-        SpringApplication.run(PaymentaMain9001.class, args);
+        SpringApplication.run(OrderMain83.class, args);
     }
 }
