@@ -106,4 +106,12 @@ public class PaymentController {
         return new CommonResult(200, "Server port [8001] :程序耗时 3s");
     }
 
+    //微服务调用 测试zipkin sleuth
+    @GetMapping(value = "/payment/zipkin")
+    public CommonResult paymentZipkin() {
+        Payment paymentById = paymentService.getPaymentById(9L);
+        log.info("{}", paymentById.getSerial());
+        return new CommonResult(200, "Server port [" + serverPort + "] :Hello Ref:rain, hello world!");
+    }
+
 }

@@ -4,6 +4,12 @@ server:
 spring:
   application:
     name: cloud-order-service  #向EurekaServer注册服务时会取该属性作为服务中心里的服务名 很重要
+#Spring Cloud Sleuth + zipkin配置
+  zipkin:
+    base-url: http://localhost:9411 #zipkin服务地址
+  sleuth:
+    sampler:
+      probability: 1 #sleuth采样率，值介于0到1之间，1表示完全采集，一般0.5即可
 
 #Eureka单机版配置
 #eureka:

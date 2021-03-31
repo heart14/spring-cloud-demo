@@ -50,4 +50,12 @@ public class OrderController {
         log.info("RestTemplate.getForEntity()方法的返回值 :{}", responseEntity);
         return responseEntity.getBody();
     }
+
+    //微服务调用 测试zipkin sleuth
+    @GetMapping(value = "/consumer/payment/zipkin")
+    public CommonResult getPaymentZipkin() {
+        CommonResult result = restTemplate.getForObject(PAYMENT_PROVIDER_URL + "/payment/zipkin", CommonResult.class);
+        log.info("[CONSUMER] 调用PROVIDER链路跟踪 :{}", result);
+        return result;
+    }
 }
