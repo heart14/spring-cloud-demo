@@ -12,6 +12,8 @@ spring:
       config:
         server-addr: localhost:8848 #Nacos作为配置中心地址
         file-extension: yaml #Nacos配置中心里配置文件扩展名 支持properties和yaml
+        #group: DEV_GROUP  #指定从哪个group里面获取配置
+        #namespace: 1920ffb3-8904-451c-a7d2-bbcf881b9439  #指定从哪个namespace里面获取配置
 
 
 # nacos配置文件dataid的格式
