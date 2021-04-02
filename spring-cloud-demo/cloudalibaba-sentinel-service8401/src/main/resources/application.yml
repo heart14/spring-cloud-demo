@@ -1,0 +1,21 @@
+server:
+  port: 8401
+
+spring:
+  application:
+    name: cloudalibaba-sentinel-service
+#Nacos作为服务注册中心的配置
+  cloud:
+    nacos:
+      discovery:
+        server-addr: heartzz.com:1111 #Nacos服务注册中心地址
+    sentinel:
+      transport:
+        dashboard: localhost:8080 #Sentinel dashboard地址
+        port: 8719 #Sentinel api port, 默认8719, 被占用会依次+1去检测端口是否可用
+#暴露监控的端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
