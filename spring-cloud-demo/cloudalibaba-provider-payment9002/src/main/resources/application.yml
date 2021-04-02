@@ -15,7 +15,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
+        server-addr: heartzz.com:1111
 #暴露监控的端点
 management:
   endpoints:
