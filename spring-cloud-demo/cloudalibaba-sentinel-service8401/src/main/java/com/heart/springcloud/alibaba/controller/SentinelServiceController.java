@@ -76,16 +76,19 @@ public class SentinelServiceController {
     }
 
     /*
-    * @SentinelResource注解，处理的是Sentinel控制台配置的违规情况，由blockHandler进行降级处理
-    * 但是当程序抛出运行时异常时，@SentinelResource注解无法对这种程序异常进行fallback降级处理
-    * 程序抛出运行时异常RuntimeException时，页面不会打印fallback内容，而是打印错误堆栈信息日志
-    */
+     * @SentinelResource注解里value值是资源名，前面进行sentinel降级限流等配置时，有一个资源名字段，当时取的是接口uri
+     * 即/sentinel/hotkey
+     * 而使用@SentinelResource注解配置了value值后，进行sentinel降级限流等配置时，资源名也可使用这个value值
+     * 这个value值也是需要保证唯一的
+     *
+     * blockHandler指定的方法是在接口调用违反了sentinel配置的规则时进行兜底处理的方法
+     */
 
     /**
      * 测试热点key规则
      */
     @GetMapping(value = "/sentinel/hotkey")
-    @SentinelResource(value = "sentinel/hotkey", blockHandler = "hotkeyBlockHandler")
+    @SentinelResource(value = "sentinel/hotkey", blockHandler = "hotkeyBlockHandler",fallback = "hotkeyFallback")
     public CommonResult sentinelHotKey(@RequestParam(value = "p1", required = false) String p1,
                                        @RequestParam(value = "p2", required = false) String p2) {
         log.info("[SENTINEL] hot key test, p1 = {}, p2 = {}", p1, p2);
@@ -93,7 +96,17 @@ public class SentinelServiceController {
         jsonObject.put("p1", p1);
         jsonObject.put("p2", p2);
 
-        return new CommonResult(200, "[SENTINEL] CUSTOM HOT KEY METHOD SUCCESS!",jsonObject);
+        /*
+         * @SentinelResource注解，处理的是Sentinel控制台配置的违规情况，由blockHandler进行降级处理
+         * 但是当程序抛出运行时异常时，@SentinelResource注解无法对这种程序异常进行fallback降级处理
+         * 程序抛出运行时异常RuntimeException时，页面不会打印hotkeyBlockHandler内容，而是打印错误堆栈信息日志
+         *
+         * 如果要想为程序运行时异常进行兜底处理，则要进行配置fallback方法，
+         * 配置方法等待后续TODO
+         */
+        //int a = 10 / 0;
+
+        return new CommonResult(200, "[SENTINEL] CUSTOM HOT KEY METHOD SUCCESS!", jsonObject);
     }
 
     public CommonResult hotkeyBlockHandler(String p1, String p2, BlockException exception) {
