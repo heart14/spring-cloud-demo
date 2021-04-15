@@ -29,6 +29,12 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
+        <!--sentinel-datasource-nacos 将Sentinel流控规则持久化到Nacos-->
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-nacos</artifactId>
+        </dependency>
+
         <!--SpringBoot整合Web组件-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

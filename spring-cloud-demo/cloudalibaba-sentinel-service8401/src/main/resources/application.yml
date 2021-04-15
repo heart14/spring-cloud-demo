@@ -13,6 +13,16 @@ spring:
       transport:
         dashboard: localhost:8080 #Sentinel dashboard地址
         port: 8719 #Sentinel api port, 默认8719, 被占用会依次+1去检测端口是否可用
+      #Sentinel数据源配置  在Nacos里面持久化配置Sentinel流控规则后 通过这里配置 可以自动读取配置
+      datasource:
+        ds1:
+          nacos:
+            server-addr: heartzz.com:1111
+            dataId: cloudalibaba-sentinel-service
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
+
 #暴露监控的端点
 management:
   endpoints:
